@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .todo-container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            margin-right: 8px;
+        }
+
+        button {
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 8px 0;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li:hover {
+            background-color: #f9f9f9;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="todo-container">
+        <h1>To-Do List</h1>
+        <input type="text" id="taskInput" placeholder="Add a new task">
+        <button onclick="addTask()">Add Task</button>
+        <ul id="taskList"></ul>
+        <script>
+            // Function to add a new task
+            function addTask() {
+                var taskInput = document.getElementById("taskInput");
+                var taskList = document.getElementById("taskList");
+
+                if (taskInput.value === "") {
+                    alert("Please enter a task!");
+                    return;
+                }
+
+                // Create a new list item
+                var li = document.createElement("li");
+                li.innerHTML = taskInput.value + '<button onclick="removeTask(this)">Remove</button>';
+                li.addEventListener("click", function() {
+                    this.classList.toggle("completed");
+                });
+
+                // Add the new item to the list
+                taskList.appendChild(li);
+
+                // Clear the input field
+                taskInput.value = "";
+            }
+
+            // Function to remove a task
+            function removeTask(button) {
+                var li = button.parentNode;
+                li.parentNode.removeChild(li);
+            }
+        </script>
+    </div>
+</body>
+</html>
