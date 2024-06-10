@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+           font-family: cursive;
+            background: #fffc00;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #ffffff, #fffc00);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #ffffff, #fffc00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+
+        .container {
+            height: 79vh;
+            max-width: 600px;
+            margin-right: 30px;
+            margin-left: 400px;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 10px 10px 0px rgba(47, 229, 236, 0.913), 5px 5px 0px rgba(173, 216, 230, 0.5);
+            background-image: url("https://cdn-icons-png.flaticon.com/128/4698/4698578.png");
+            background-repeat: no-repeat;
+            background-position: 200px 350px;
+            background-size: 200px;
+  
+  border: 3px solid black;
+  color: black;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bolder;
+        }
+        .head:hover {
+    color: #58f943;
+    transform: scale(1.2); /* Adjust the scale as per your requirement */
+}
+
+
+        input[type="text"],
+        textarea,
+        input[type="date"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .task {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        .task h2 {
+            margin-top: 0;
+        }
+
+        .task p {
+            margin-top: 5px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="head"><u>To-Do List</u></h1>
+
+        <form id="taskForm">
+            <input type="text" id="title" placeholder="Task Title" required>
+            <textarea id="explanation" placeholder="Task Explanation" required></textarea>
+            <input type="date" id="dueDate" required>
+            <input type="submit" value="Add Task">
+        </form>
+
+
+        <div id="taskList"></div>
+    </div>
+
+    <script>
+        document.getElementById("taskForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            addTask();
+        });
+
+        function addTask() {
+            var title = document.getElementById("title").value;
+            var explanation = document.getElementById("explanation").value;
+            var dueDate = document.getElementById("dueDate").value;
+
+            var taskList = document.getElementById("taskList");
+
+            var taskDiv = document.createElement("div");
+            taskDiv.classList.add("task");
+
+            var titleHeading = document.createElement("h2");
+            titleHeading.textContent = title;
+
+            var explanationPara = document.createElement("p");
+            explanationPara.textContent = explanation;
+
+            var dueDatePara = document.createElement("p");
+            dueDatePara.textContent = "Due Date: " + dueDate;
+
+            taskDiv.appendChild(titleHeading);
+            taskDiv.appendChild(explanationPara);
+            taskDiv.appendChild(dueDatePara);
+
+            taskList.appendChild(taskDiv);
+
+            // Clear form fields
+            document.getElementById("title").value = "";
+            document.getElementById("explanation").value = "";
+            document.getElementById("dueDate").value = "";
+        }
+    </script>
+
+</body>
+
+</html>

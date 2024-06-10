@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    input[type="text"], textarea, input[type="date"], input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        cursor: pointer;
+    }
+    .task {
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+    }
+    .task h2 {
+        margin-top: 0;
+    }
+    .task p {
+        margin-top: 5px;
+        color: #666;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>To-Do List</h1>
+    <form id="taskForm">
+        <input type="text" id="title" placeholder="Task Title" required>
+        <textarea id="explanation" placeholder="Task Explanation" required></textarea>
+        <input type="date" id="dueDate" required>
+        <input type="submit" value="Add Task">
+    </form>
+
+    <div id="taskList"></div>
+</div>
+
+<script>
+    document.getElementById("taskForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        addTask();
+    });
+
+    function addTask() {
+        var title = document.getElementById("title").value;
+        var explanation = document.getElementById("explanation").value;
+        var dueDate = document.getElementById("dueDate").value;
+
+        var taskList = document.getElementById("taskList");
+
+        var taskDiv = document.createElement("div");
+        taskDiv.classList.add("task");
+
+        var titleHeading = document.createElement("h2");
+        titleHeading.textContent = title;
+
+        var explanationPara = document.createElement("p");
+        explanationPara.textContent = explanation;
+
+        var dueDatePara = document.createElement("p");
+        dueDatePara.textContent = "Due Date: " + dueDate;
+
+        taskDiv.appendChild(titleHeading);
+        taskDiv.appendChild(explanationPara);
+        taskDiv.appendChild(dueDatePara);
+
+        taskList.appendChild(taskDiv);
+
+        // Clear form fields
+        document.getElementById("title").value = "";
+        document.getElementById("explanation").value = "";
+        document.getElementById("dueDate").value = "";
+    }
+</script>
+
+</body>
+</html>
